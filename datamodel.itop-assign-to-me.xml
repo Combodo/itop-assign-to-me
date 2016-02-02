@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2">
+  <module_parameters>
+    <parameters id="itop-assign-to-me" _delta="define">
+      <allowed_classes type="hash">
+        <UserRequest type="hash">
+          <dispatched>ev_assign</dispatched>
+          <assigned>ev_reassign</assigned>
+          <redispatched>ev_assign</redispatched>
+        </UserRequest>
+        <Incident type="hash">
+          <dispatched>ev_assign</dispatched>
+          <assigned>ev_reassign</assigned>
+          <redispatched>ev_assign</redispatched>
+        </Incident>
+      </allowed_classes>
+    </parameters>
+  </module_parameters>
+</itop_design>
