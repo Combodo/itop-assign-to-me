@@ -5,7 +5,7 @@
 
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'itop-assign-to-me/0.1.0',
+	'itop-assign-to-me/0.1.1',
 	array(
 		// Identification
 		//
@@ -16,8 +16,8 @@ SetupWebPage::AddModule(
 		//
 		'dependencies' => array(
 			'itop-tickets/2.2.0',
-			'itop-auto-assignment/0.1.0',
-		),
+			'itop-auto-assignment/0.1.0||itop-auto-dispatch-ticket/0.1.0',
+	),
 		'mandatory' => false,
 		'visible' => true,
 		
