@@ -5,7 +5,7 @@
 
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'itop-assign-to-me/0.1.2',
+	'itop-assign-to-me/0.1.3-dev',
 	array(
 		// Identification
 		//
