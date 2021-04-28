@@ -5,7 +5,7 @@
 
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'itop-assign-to-me/0.1.3-dev',
+	'itop-assign-to-me/0.1.3',
 	array(
 		// Identification
 		//
@@ -24,7 +24,7 @@ SetupWebPage::AddModule(
 		// Components
 		//
 		'datamodel' => array(
-			'main.itop-assign-to-me.php',
+			'model.itop-assign-to-me.php',
 		),
 		'webservice' => array(
 			
