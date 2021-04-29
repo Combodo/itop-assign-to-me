@@ -70,9 +70,14 @@ try {
 					$aExpectedAttributes = $oTicket->GetTransitionAttributes($sStimulus /*, current state*/);
 					$bAttributesToBeSetForTransition = false;
 					foreach($aExpectedAttributes as $sAttCode => $iFlag) {
-						if (($iFlag & (OPT_ATT_MUSTCHANGE | OPT_ATT_MUSTPROMPT)) || (($iFlag & OPT_ATT_MANDATORY) && ($oTicket->Get($sAttCode) == ''))) {
-							$bAttributesToBeSetForTransition = true;
-							break;
+						if (($sAttCode != 'team_id') && ($sAttCode != 'agent_id'))
+						{
+							// Attributes team_id and agent_id should not be part of that check
+							if (($iFlag & (OPT_ATT_MUSTCHANGE | OPT_ATT_MUSTPROMPT)) || (($iFlag & OPT_ATT_MANDATORY) && ($oTicket->Get($sAttCode) == '')))
+							{
+								$bAttributesToBeSetForTransition = true;
+								break;
+							}
 						}
 					}
 					if (!$bAttributesToBeSetForTransition) {
