@@ -71,8 +71,9 @@ try {
 					$bAttributesToBeSetForTransition = false;
 					foreach($aExpectedAttributes as $sAttCode => $iFlag) {
 						if (($sAttCode != 'team_id') && ($sAttCode != 'agent_id')) {
+							$oAttDef = MetaModel::GetAttributeDef(get_class($oTicket), $sAttCode);
 							// Attributes team_id and agent_id should not be part of that check
-							if (($iFlag & (OPT_ATT_MUSTCHANGE | OPT_ATT_MUSTPROMPT)) || (($iFlag & OPT_ATT_MANDATORY) && ($oTicket->Get($sAttCode) == ''))) {
+							if (($iFlag & (OPT_ATT_MUSTCHANGE | OPT_ATT_MUSTPROMPT)) || (($iFlag & OPT_ATT_MANDATORY) && !$oAttDef->HasAValue($oTicket->Get($sAttCode)))) {
 								$bAttributesToBeSetForTransition = true;
 								break;
 							}
