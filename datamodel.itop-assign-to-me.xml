@@ -92,7 +92,7 @@ class AssignToMeMenuExtension implements iPopupMenuExtension {
 					foreach ($aAllowedClasses as $sAllowedClass => $aClass) {
 						// Check $sAllowedClass is a valid class
 						if (($sAllowedClass != '') && !MetaModel::IsValidClass($sAllowedClass)) {
-							IssueLog::Error('Module itop-assign-to-me - invalid class #'.$sAllowedClass.' - name "'.$sAllowedClass.'" is not a valid class');
+							IssueLog::Debug('Module itop-assign-to-me - invalid class #'.$sAllowedClass.' - name "'.$sAllowedClass.'" is not a valid class');
 							break;
 						}
 
