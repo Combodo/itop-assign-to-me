@@ -23,7 +23,6 @@
  * ***********************************************************************************/
 require_once('../approot.inc.php');
 require_once(APPROOT.'/application/application.inc.php');
-require_once(APPROOT.'/application/itopwebpage.class.inc.php');
 require_once(APPROOT.'/application/wizardhelper.class.inc.php');
 
 require_once(APPROOT.'/application/startup.inc.php');
@@ -89,14 +88,14 @@ try {
 						$oP->add_header('Location: '.utils::GetAbsoluteUrlAppRoot().'pages/UI.php?operation=details&class='.$sClass.'&id='.$id.'&'.$oAppContext->GetForLink());
 					} else {
 						// Other attributes need to be set -> join the standard process
-						$oP->add_linked_script("../js/json.js");
-						$oP->add_linked_script("../js/forms-json-utils.js");
-						$oP->add_linked_script("../js/wizardhelper.js");
-						$oP->add_linked_script("../js/wizard.utils.js");
-						$oP->add_linked_script("../js/linkswidget.js");
-						$oP->add_linked_script("../js/linksdirectwidget.js");
-						$oP->add_linked_script("../js/extkeywidget.js");
-						$oP->add_linked_script("../js/jquery.blockUI.js");
+						$oP->LinkScriptFromAppRoot("js/json.js");
+						$oP->LinkScriptFromAppRoot("js/forms-json-utils.js");
+						$oP->LinkScriptFromAppRoot("js/wizardhelper.js");
+						$oP->LinkScriptFromAppRoot("js/wizard.utils.js");
+						$oP->LinkScriptFromAppRoot("js/links/links_widget.js");
+						$oP->LinkScriptFromAppRoot("js/links/links_direct_widget.js");
+						$oP->LinkScriptFromAppRoot("js/extkeywidget.js");
+						$oP->LinkScriptFromAppRoot("js/jquery.blockUI.js");
 
 						$aPrefillFormParam = array('user' => $_SESSION["auth_user"], 'context' => $oAppContext->GetAsHash(), 'stimulus' => $sStimulus, 'origin' => 'console');
 						try {
