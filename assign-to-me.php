@@ -27,6 +27,8 @@ require_once(APPROOT.'/application/wizardhelper.class.inc.php');
 
 require_once(APPROOT.'/application/startup.inc.php');
 
+use \Combodo\iTop\Application\WebPage\iTopWebPage;
+
 try {
 	$operation = utils::ReadParam('operation', '');
 
