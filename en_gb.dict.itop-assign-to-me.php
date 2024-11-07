@@ -8,6 +8,6 @@
 
 Dict::Add('EN GB', 'British English', 'British English', array(
 	'Menu:AssignToMe' => 'Assign to me',
-	'Menu:AssignToMe+' => 'Assigne that ticket to me',
+	'Menu:AssignToMe+' => 'Assign that ticket to me',
 ));
 
