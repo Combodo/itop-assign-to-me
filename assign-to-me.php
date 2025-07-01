@@ -105,10 +105,17 @@ try {
 						} catch (ApplicationException $e) {
 							$sMessage = $e->getMessage();
 							$sSeverity = 'info';
-							ReloadAndDisplay($oP, $oTicket, 'stimulus', $sMessage, $sSeverity);
+                            cmdbAbstractObject::SetSessionMessage(get_class($oTicket), $oTicket->GetKey(), 'stimulus_not_awalable', $e->getMessage(), $sSeverity, 0);
+                            $oTicket->SetDisplayMode(cmdbAbstractObject::ENUM_DISPLAY_MODE_VIEW);
+                            $oTicket->DisplayDetails($oP, false);
 						}
 					}
-				}
+                } else {
+                    $sMessage = Dict::Format('UI:Error:Invalid_Stimulus_On_Object_In_State', $sStimulus, $oTicket->GetName(), $oTicket->GetStateLabel());
+                    cmdbAbstractObject::SetSessionMessage(get_class($oTicket), $oTicket->GetKey(), 'stimulus_not_awalable', $sMessage, 'warning', 0);
+                    $oTicket->SetDisplayMode(cmdbAbstractObject::ENUM_DISPLAY_MODE_VIEW);
+                    $oTicket->DisplayDetails($oP, false);
+                }
 			}
 			break;
 
