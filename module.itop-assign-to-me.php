@@ -16,7 +16,7 @@ SetupWebPage::AddModule(
 		//
 		'dependencies' => array(
 			'itop-tickets/3.2.0',
-			'itop-auto-assignment/0.1.0||itop-auto-dispatch-ticket/0.1.0||combodo-autodispatch-ticket/1.0.2',
+			'itop-auto-assignment/0.1.0||itop-auto-dispatch-ticket/0.1.0||combodo-autodispatch-ticket/1.0.2|combodo-dispatch-incident/1.1.0|combodo-dispatch-request/1.1.0',
 	),
 		'mandatory' => false,
 		'visible' => true,
