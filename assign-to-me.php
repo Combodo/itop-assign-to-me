@@ -93,7 +93,6 @@ try {
 						$oP->LinkScriptFromAppRoot("js/json.js");
 						$oP->LinkScriptFromAppRoot("js/forms-json-utils.js");
 						$oP->LinkScriptFromAppRoot("js/wizardhelper.js");
-						$oP->LinkScriptFromAppRoot("js/wizard.utils.js");
 						$oP->LinkScriptFromAppRoot("js/links/links_widget.js");
 						$oP->LinkScriptFromAppRoot("js/links/links_direct_widget.js");
 						$oP->LinkScriptFromAppRoot("js/extkeywidget.js");
