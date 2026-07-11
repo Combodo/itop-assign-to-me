@@ -1,4 +1,5 @@
 <?php
+
 /// Copyright (C) 2010-2021 Combodo SARL
 //
 //   This file is part of iTop.
@@ -27,7 +28,7 @@ require_once(APPROOT.'/application/wizardhelper.class.inc.php');
 
 require_once(APPROOT.'/application/startup.inc.php');
 
-use \Combodo\iTop\Application\WebPage\iTopWebPage;
+use Combodo\iTop\Application\WebPage\iTopWebPage;
 
 try {
 	$operation = utils::ReadParam('operation', '');
@@ -46,7 +47,7 @@ try {
 	$oP = new iTopWebPage(Dict::S('UI:WelcomeToITop'));
 	$oP->SetMessage($sLoginMessage);
 
-	switch($operation) {
+	switch ($operation) {
 		case 'stimulus':
 			$sClass = utils::ReadParam('class', '');
 			if (empty($sClass)) {
@@ -70,7 +71,7 @@ try {
 					// Check if some attributes need to be set for the transition
 					$aExpectedAttributes = $oTicket->GetTransitionAttributes($sStimulus /*, current state*/);
 					$bAttributesToBeSetForTransition = false;
-					foreach($aExpectedAttributes as $sAttCode => $iFlag) {
+					foreach ($aExpectedAttributes as $sAttCode => $iFlag) {
 						if (($sAttCode != 'team_id') && ($sAttCode != 'agent_id')) {
 							$oAttDef = MetaModel::GetAttributeDef(get_class($oTicket), $sAttCode);
 							// Attributes team_id and agent_id should not be part of that check
@@ -98,41 +99,40 @@ try {
 						$oP->LinkScriptFromAppRoot("js/extkeywidget.js");
 						$oP->LinkScriptFromAppRoot("js/jquery.blockUI.js");
 
-						$aPrefillFormParam = array('user' => $_SESSION["auth_user"], 'context' => $oAppContext->GetAsHash(), 'stimulus' => $sStimulus, 'origin' => 'console');
+						$aPrefillFormParam = ['user' => $_SESSION["auth_user"], 'context' => $oAppContext->GetAsHash(), 'stimulus' => $sStimulus, 'origin' => 'console'];
 						try {
 							$oTicket->DisplayStimulusForm($oP, $sStimulus, $aPrefillFormParam);
 						} catch (ApplicationException $e) {
 							$sMessage = $e->getMessage();
 							$sSeverity = 'info';
-                            cmdbAbstractObject::SetSessionMessage(get_class($oTicket), $oTicket->GetKey(), 'stimulus_not_awalable', $e->getMessage(), $sSeverity, 0);
-                            $oTicket->SetDisplayMode(cmdbAbstractObject::ENUM_DISPLAY_MODE_VIEW);
-                            $oTicket->DisplayDetails($oP, false);
+							cmdbAbstractObject::SetSessionMessage(get_class($oTicket), $oTicket->GetKey(), 'stimulus_not_awalable', $e->getMessage(), $sSeverity, 0);
+							$oTicket->SetDisplayMode(cmdbAbstractObject::ENUM_DISPLAY_MODE_VIEW);
+							$oTicket->DisplayDetails($oP, false);
 						}
 					}
-                } else {
-                    $sMessage = Dict::Format('UI:Error:Invalid_Stimulus_On_Object_In_State', $sStimulus, $oTicket->GetName(), $oTicket->GetStateLabel());
-                    cmdbAbstractObject::SetSessionMessage(get_class($oTicket), $oTicket->GetKey(), 'stimulus_not_awalable', $sMessage, 'warning', 0);
-                    $oTicket->SetDisplayMode(cmdbAbstractObject::ENUM_DISPLAY_MODE_VIEW);
-                    $oTicket->DisplayDetails($oP, false);
-                }
+				} else {
+					$sMessage = Dict::Format('UI:Error:Invalid_Stimulus_On_Object_In_State', $sStimulus, $oTicket->GetName(), $oTicket->GetStateLabel());
+					cmdbAbstractObject::SetSessionMessage(get_class($oTicket), $oTicket->GetKey(), 'stimulus_not_awalable', $sMessage, 'warning', 0);
+					$oTicket->SetDisplayMode(cmdbAbstractObject::ENUM_DISPLAY_MODE_VIEW);
+					$oTicket->DisplayDetails($oP, false);
+				}
 			}
 			break;
 
 		case 'apply_stimulus':
-			include_once (APPROOT.'pages/UI.php');
+			include_once(APPROOT.'pages/UI.php');
 			die();
 			break;
 
-		///////////////////////////////////////////////////////////////////////////////////////////
+			///////////////////////////////////////////////////////////////////////////////////////////
 
 		default: // Menu node rendering (templates)
 			$oP->p('Invalid operation: '.$operation);
 
-		///////////////////////////////////////////////////////////////////////////////////////////
+			///////////////////////////////////////////////////////////////////////////////////////////
 	}
 	$oP->output();
-}
-catch(CoreException $e) {
+} catch (CoreException $e) {
 	require_once(APPROOT.'/setup/setuppage.class.inc.php');
 	$oP = new SetupPage(Dict::S('UI:PageTitle:FatalError'));
 	if ($e instanceof SecurityException) {
@@ -155,7 +155,7 @@ catch(CoreException $e) {
 				$oLog->Set('callstack', $e->getTrace());
 				$oLog->Set('data', $e->getContextData());
 				$oLog->DBInsertNoReload();
-			} catch(Exception $e) {
+			} catch (Exception $e) {
 				IssueLog::Error("Failed to log issue into the DB");
 			}
 		}
@@ -165,8 +165,7 @@ catch(CoreException $e) {
 
 	// For debugging only
 	//throw $e;
-}
-catch(Exception $e) {
+} catch (Exception $e) {
 	require_once(APPROOT.'/setup/setuppage.class.inc.php');
 	$oP = new SetupPage(Dict::S('UI:PageTitle:FatalError'));
 	$oP->add("<h1>".Dict::S('UI:FatalErrorMessage')."</h1>\n");
@@ -183,9 +182,9 @@ catch(Exception $e) {
 				$oLog->Set('issue', 'PHP Exception');
 				$oLog->Set('impact', 'Page could not be displayed');
 				$oLog->Set('callstack', $e->getTrace());
-				$oLog->Set('data', array());
+				$oLog->Set('data', []);
 				$oLog->DBInsertNoReload();
-			} catch(Exception $e) {
+			} catch (Exception $e) {
 				IssueLog::Error("Failed to log issue into the DB");
 			}
 		}
