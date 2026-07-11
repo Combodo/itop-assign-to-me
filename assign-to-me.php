@@ -91,7 +91,6 @@ try {
 						$oP->add_header('Location: '.utils::GetAbsoluteUrlAppRoot().'pages/UI.php?operation=details&class='.$sClass.'&id='.$id.'&'.$oAppContext->GetForLink());
 					} else {
 						// Other attributes need to be set -> join the standard process
-						$oP->LinkScriptFromAppRoot("js/json.js");
 						$oP->LinkScriptFromAppRoot("js/forms-json-utils.js");
 						$oP->LinkScriptFromAppRoot("js/wizardhelper.js");
 						$oP->LinkScriptFromAppRoot("js/links/links_widget.js");
